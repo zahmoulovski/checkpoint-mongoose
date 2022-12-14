@@ -9,4 +9,4 @@ const ContactSchema=mongoose.Schema({
     }
 })
 
-module.exports=mongoose.model('contactssss',ContactSchema)
+module.exports=mongoose.model('contacts',ContactSchema)
