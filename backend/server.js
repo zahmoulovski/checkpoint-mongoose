@@ -16,9 +16,7 @@ var cors=require('cors')
 
 app.use(cors())
 
-require('dotenv').config()
-
-app.use('/api/user',ContactRouter)
+app.use('/user',ContactRouter)
 
 app.listen(port,err=>{
     err?console.log(err):console.log(`You're connected to ${port}`)
