@@ -3,7 +3,7 @@ const express = require("express");
 
 const ContactRouter = express.Router();
 const {
-  deletContact,
+  deleteContact,
   GetById,
   UpdateContact,
   AddContact,
@@ -12,7 +12,7 @@ const {
 
 ContactRouter.get("/", GetContact);
 
-ContactRouter.delete("/:id", deletContact);
+ContactRouter.delete("/:id", deleteContact);
 
 ContactRouter.post("/", AddContact);
 

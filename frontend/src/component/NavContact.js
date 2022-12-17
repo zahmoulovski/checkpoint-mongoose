@@ -6,14 +6,16 @@ const NavContact = () => {
   return (
     <div>
       <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+        <Container className="navbar">
+          <Navbar.Brand as={Link} to="/">
+            Navbar
+          </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">
               Home
             </Nav.Link>
-            <Nav.Link as={Link} to="/addContact">
-              Adding
+            <Nav.Link as={Link} to="/add">
+              Add
             </Nav.Link>
           </Nav>
         </Container>

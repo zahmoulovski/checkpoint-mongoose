@@ -6,9 +6,12 @@ const contactSlice = createSlice({
   initialState: [
     {
       id: uuidv4(),
-      name: "zahmoulovski",
-      age: 30,
-      email: "zahmoulovski@gmail.com",
+      firstname: "initialState",
+      name: "initialState",
+      description: "initialState",
+      age: 33,
+      phone: "initialState",
+      email: "initialState",
     },
   ],
   reducers: {

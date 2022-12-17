@@ -11,7 +11,7 @@ function App() {
       <NavContact />
       <Routes>
         <Route path="/" element={<ListContact />} />
-        <Route path="/addContact" element={<Add />} />
+        <Route path="/add" element={<Add />} />
         <Route path="/update/:id" element={<Update />} />
       </Routes>
     </div>

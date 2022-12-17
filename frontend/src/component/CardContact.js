@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "react-bootstrap";
-import { deletContact } from "../api/contact";
+import { deleteContact } from "../api/contact";
 import { useNavigate } from "react-router";
 const CardContact = ({ contact, getContact }) => {
   let navigate = useNavigate();
@@ -10,26 +10,34 @@ const CardContact = ({ contact, getContact }) => {
 
   return (
     <div>
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "20rem" }}>
         <Card.Body>
-          <Button
-            onClick={async () => {
-              await deletContact(contact._id);
-              getContact();
-            }}
-          >
-            Delete
-          </Button>
-          <Button onClick={() => update()} variant="danger">
-            Update
-          </Button>
-          <Card.Title>{contact.name}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            {contact._id}
+          <Card.Title>First name : {contact.firstname}</Card.Title>
+          <Card.Title>Last name : {contact.name}</Card.Title>
+          <Card.Subtitle className="mb-2 text-muted prevent">
+            ID : {contact._id}
           </Card.Subtitle>
-          <Card.Text>here's some bla bla bla</Card.Text>
-          <Card>{contact.age}</Card>
-          <Card>{contact.email}</Card>
+          <Card.Text>Description : {contact.description}</Card.Text>
+          <Card>
+            Age :{contact.age}
+            <br />
+            Phone : {contact.phone}
+          </Card>
+          <Card>E-mail : {contact.email}</Card>
+          <div className="btns">
+            <Button onClick={() => update()} variant="warning">
+              Update
+            </Button>
+            <Button
+              variant="danger"
+              onClick={async () => {
+                await deleteContact(contact._id);
+                getContact();
+              }}
+            >
+              Delete
+            </Button>
+          </div>
         </Card.Body>
       </Card>
     </div>

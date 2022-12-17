@@ -14,8 +14,8 @@ export const postContact = async (values) => {
   );
 };
 
-export const deletContact = async (id) => {
-  const deletCont = await axios.delete(
+export const deleteContact = async (id) => {
+  const deleteCont = await axios.delete(
     `${process.env.REACT_APP_API_BASE_URL}/api/user/${id}`
   );
 };

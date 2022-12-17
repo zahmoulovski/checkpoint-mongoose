@@ -3,9 +3,9 @@ const ContactSchema = require("../model/Contact");
 exports.GetContact = async (req, res) => {
   try {
     const Contacts = await ContactSchema.find();
-    res.status(200).send({ Contacts, msg: "list of ocntact" });
+    res.status(200).send({ Contacts, msg: "Here's your list" });
   } catch {
-    res.status(500).send("could not get contacts");
+    res.status(500).send("You have no users to show");
   }
 };
 
@@ -13,9 +13,9 @@ exports.AddContact = async (req, res) => {
   try {
     const NewContact = new ContactSchema(req.body);
     await NewContact.save();
-    res.status(200).send({ NewContact, msg: "you did it the user is added " });
+    res.status(200).send({ NewContact, msg: "Contact have been added" });
   } catch (err) {
-    res.status(500).send("could not add the contact");
+    res.status(500).send("Could not add contact!");
   }
 };
 
@@ -25,9 +25,9 @@ exports.UpdateContact = async (req, res) => {
     const updatedUser = await ContactSchema.findByIdAndUpdate(id, {
       $set: { ...req.body },
     });
-    res.status(200).send("the user is updated ");
+    res.status(200).send("Contact updated");
   } catch (err) {
-    res.status(500).send("u didnt do it  , no he is not  updated");
+    res.status(500).send("Could not update");
   }
 };
 exports.GetById = async (req, res) => {
@@ -38,17 +38,17 @@ exports.GetById = async (req, res) => {
     res.status(200).send({ getuser });
   } catch (err) {
     console.log(err);
-    res.status(500).send("there is no getting naw ");
+    res.status(500).send("Could not find it");
   }
 };
 
-exports.deletContact = async (req, res) => {
+exports.deleteContact = async (req, res) => {
   try {
     const { id } = req.params;
 
     const delContact = await ContactSchema.findByIdAndDelete(id);
-    res.status(200).send("could delet it ");
+    res.status(200).send("Contact deleted");
   } catch (err) {
-    res.status(500).send("could not delete");
+    res.status(500).send("Could not delete it");
   }
 };
