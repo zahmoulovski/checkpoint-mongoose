@@ -1,16 +1,22 @@
-const express = require('express')
-const ContactRouter=express.Router()
-const ContactSchema=require('../models/Contact')
-const {GetUser,PostUser,UpdateUser,DeleteUser,GetUserByID} =require ('../controllers/contact')
+const { Route } = require("express");
+const express = require("express");
 
-ContactRouter.get('/',GetUser)
+const ContactRouter = express.Router();
+const {
+  deletContact,
+  GetById,
+  UpdateContact,
+  AddContact,
+  GetContact,
+} = require("../controllers/contact");
 
-ContactRouter.post('/',PostUser)
+ContactRouter.get("/", GetContact);
 
-ContactRouter.put('/:id',UpdateUser)
+ContactRouter.delete("/:id", deletContact);
 
-ContactRouter.delete('/:id',DeleteUser)
+ContactRouter.post("/", AddContact);
 
-ContactRouter.get('/:id',GetUserByID)
+ContactRouter.put("/:id", UpdateContact);
 
-module.exports=ContactRouter
+ContactRouter.get("/:id", GetById);
+module.exports = ContactRouter;

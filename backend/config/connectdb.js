@@ -1,13 +1,14 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const connectdb=async()=>{
-    try{
-       await mongoose.connect(`mongodb+srv://yassine:Yassine0324@cluster.gzxzi66.mongodb.net/contactList?retryWrites=true&w=majority`)
-        console.log('you are connected to DB')
-    }catch(err){
-     console.log(err)   
-    }
-    
-}
+const connectDB = async () => {
+  try {
+    await mongoose.connect(
+      "mongodb+srv://zahmoulovski:Sb5oj2RJbLWVdCil@cluster.gzxzi66.mongodb.net/contactList?retryWrites=true&w=majority"
+    );
+    console.log("db is connected");
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-module.exports=connectdb;
+module.exports = connectDB;

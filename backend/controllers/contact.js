@@ -1,51 +1,54 @@
-const ContactSchema = require('../models/Contact');
+const ContactSchema = require("../model/Contact");
 
-exports.GetUser=async(req,res)=>{
-    try{
-        const Contacts =await ContactSchema.find()
-        res.status(200).send({msg:"Here's your list",Contacts})
-    }catch(err){
-        res.status(500).send('You have no users to show')
-    }
-}
+exports.GetContact = async (req, res) => {
+  try {
+    const Contacts = await ContactSchema.find();
+    res.status(200).send({ Contacts, msg: "list of ocntact" });
+  } catch {
+    res.status(500).send("could not get contacts");
+  }
+};
 
-exports.PostUser=async(req,res)=>{
-    try{
-        const newContact = new ContactSchema(req.body)
-        await newContact.save()
-        res.status(200).send({msg:'Contact have been added',newContact})
-    }catch(err){
-        console.log(err)
-    res.status(500).send('Could not add contact!')
-}
-}
+exports.AddContact = async (req, res) => {
+  try {
+    const NewContact = new ContactSchema(req.body);
+    await NewContact.save();
+    res.status(200).send({ NewContact, msg: "you did it the user is added " });
+  } catch (err) {
+    res.status(500).send("could not add the contact");
+  }
+};
 
-exports.UpdateUser=async(req,res)=>{
-    try{
-        const {id}=req.params
-        const updateUser= await ContactSchema.findByIdAndUpdate(id,{$set:{...req.body}})
-        res.status(200).send('Contact updated')
-    }catch(err){
-        res.status(500).send('Can not update')
-    }
-}
+exports.UpdateContact = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const updatedUser = await ContactSchema.findByIdAndUpdate(id, {
+      $set: { ...req.body },
+    });
+    res.status(200).send("the user is updated ");
+  } catch (err) {
+    res.status(500).send("u didnt do it  , no he is not  updated");
+  }
+};
+exports.GetById = async (req, res) => {
+  const { id } = req.params;
 
-exports.DeleteUser=async(req,res)=>{
-    try{
-        const {id}=req.params
-        const deleteUser= await ContactSchema.findByIdAndDelete(id)
-        res.status(200).send('Contact deleted')
-    }catch(err){
-        res.status(500).send('Cant delete it')
-    }
-}
+  try {
+    const getuser = await ContactSchema.findById(id);
+    res.status(200).send({ getuser });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("there is no getting naw ");
+  }
+};
 
-exports.GetUserByID=async(req,res)=>{
-    try{
-        const {id}=req.params
-        const getUser =await ContactSchema.findById(id)
-        res.status(200).send({msg:'this is your search result',getUser})
-    }catch(err){
-        res.status(500).send('Cant find him')
-    }
-}
+exports.deletContact = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const delContact = await ContactSchema.findByIdAndDelete(id);
+    res.status(200).send("could delet it ");
+  } catch (err) {
+    res.status(500).send("could not delete");
+  }
+};
